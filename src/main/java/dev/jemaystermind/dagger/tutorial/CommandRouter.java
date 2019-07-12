@@ -4,11 +4,16 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import javax.inject.Inject;
 
 import static dev.jemaystermind.dagger.tutorial.Command.Status;
 
 final class CommandRouter {
   private final Map<String, Command> commands = Collections.emptyMap();
+
+  @Inject
+  public CommandRouter() {
+  }
 
   Status route(String input) {
     List<String> splitInput = split(input);
