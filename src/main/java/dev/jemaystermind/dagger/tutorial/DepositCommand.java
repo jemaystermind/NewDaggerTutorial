@@ -1,31 +1,25 @@
 package dev.jemaystermind.dagger.tutorial;
 
 import java.math.BigDecimal;
-import java.util.List;
 import javax.inject.Inject;
 
-import static dev.jemaystermind.dagger.tutorial.Database.*;
+import static dev.jemaystermind.dagger.tutorial.Database.Account;
 
-class DepositCommand implements Command {
+class DepositCommand extends BigDecimalCommand {
 
-  private final Database database;
+  private final Account account;
   private final Outputter outputter;
 
   @Inject
-  public DepositCommand(Database database, Outputter outputter) {
-    System.out.println("Creating a new " + this);
-    this.database = database;
+  public DepositCommand(Account account, Outputter outputter) {
+    super(outputter);
+    this.account = account;
     this.outputter = outputter;
   }
 
-  @Override public Result handleInput(List<String> input) {
-    if (input.size() != 2) {
-      return Result.invalid();
-    }
 
-    Account account = database.getAccount(input.get(0));
-    account.deposit(new BigDecimal(input.get(1)));
+  @Override protected void handleAmount(BigDecimal amount) {
+    account.deposit(amount);
     outputter.output(account.username() + " now has: " + account.balance());
-    return Result.handled();
   }
 }
