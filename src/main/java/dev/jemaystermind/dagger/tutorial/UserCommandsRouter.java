@@ -6,6 +6,7 @@ import dagger.Subcomponent;
 
 import static dev.jemaystermind.dagger.tutorial.Database.Account;
 
+@PerSession
 @Subcomponent(
     modules = {
         UserCommandModule.class
