@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import javax.inject.Inject;
 
+import static dev.jemaystermind.dagger.tutorial.Command.Result;
 import static dev.jemaystermind.dagger.tutorial.Command.Status;
 
 final class CommandRouter {
@@ -16,7 +17,7 @@ final class CommandRouter {
     commands.put(command.key(), command);
   }
 
-  Status route(String input) {
+  Result route(String input) {
     List<String> splitInput = split(input);
     if (splitInput.isEmpty()) {
       return invalidCommand(input);
@@ -28,18 +29,14 @@ final class CommandRouter {
       return invalidCommand(input);
     }
 
-    Status status = command.handleInput(splitInput.subList(1, splitInput.size()));
-    if (status == Status.INVALID) {
-      System.out.println(commandKey + ": invalid arguments");
-      return status;
-    }
-
-    return status;
+    List<String> args = splitInput.subList(1, splitInput.size());
+    Result result = command.handleInput(args);
+    return result.status().equals(Status.INVALID) ? invalidCommand(input) : result;
   }
 
-  private Status invalidCommand(String input) {
+  private Result invalidCommand(String input) {
     System.out.println(String.format("Could not understand \"%s\". Please try again.", input));
-    return Status.INVALID;
+    return Result.invalid();
   }
 
   private List<String> split(String input) {

@@ -16,12 +16,12 @@ public class HelloWorldCommand implements Command {
     return "hello";
   }
 
-  @Override public Status handleInput(List<String> input) {
+  @Override public Result handleInput(List<String> input) {
     if (!input.isEmpty()) {
-      return Status.INVALID;
+      return Result.invalid();
     }
 
     outputter.output("world!");
-    return Status.HANDLED;
+    return Result.handled();
   }
 }
