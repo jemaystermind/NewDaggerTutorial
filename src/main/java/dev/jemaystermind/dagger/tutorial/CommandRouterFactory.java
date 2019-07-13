@@ -2,7 +2,7 @@ package dev.jemaystermind.dagger.tutorial;
 
 import dagger.Component;
 
-@Component
+@Component(modules = HelloWorldModule.class)
 interface CommandRouterFactory {
   CommandRouter router();
 }
