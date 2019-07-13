@@ -1,7 +1,6 @@
 package dev.jemaystermind.dagger.tutorial;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.inject.Inject;
@@ -10,11 +9,11 @@ import static dev.jemaystermind.dagger.tutorial.Command.Result;
 import static dev.jemaystermind.dagger.tutorial.Command.Status;
 
 final class CommandRouter {
-  private final Map<String, Command> commands = new HashMap<>();
+  private final Map<String, Command> commands;
 
   @Inject
-  public CommandRouter(Command command) {
-    commands.put(command.key(), command);
+  public CommandRouter(Map<String, Command> commands) {
+    this.commands = commands;
   }
 
   Result route(String input) {

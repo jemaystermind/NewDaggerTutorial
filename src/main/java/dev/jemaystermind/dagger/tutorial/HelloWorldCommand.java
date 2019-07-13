@@ -12,10 +12,6 @@ public class HelloWorldCommand implements Command {
     this.outputter = outputter;
   }
 
-  @Override public String key() {
-    return "hello";
-  }
-
   @Override public Result handleInput(List<String> input) {
     if (!input.isEmpty()) {
       return Result.invalid();

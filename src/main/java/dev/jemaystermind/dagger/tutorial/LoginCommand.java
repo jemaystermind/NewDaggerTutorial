@@ -10,10 +10,6 @@ final class LoginCommand extends SingleArgCommand {
     this.outputter = outputter;
   }
 
-  @Override public String key() {
-    return "login";
-  }
-
   @Override protected Result handleArg(String username) {
     outputter.output(username + " is logged in.");
     return Result.handled();
