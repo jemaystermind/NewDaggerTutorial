@@ -10,6 +10,7 @@ final class LoginCommand extends SingleArgCommand {
 
   @Inject
   LoginCommand(Database database, Outputter outputter) {
+    System.out.println("Creating a new " + this);
     this.outputter = outputter;
     this.database = database;
   }
