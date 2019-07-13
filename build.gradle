@@ -1,6 +1,5 @@
 plugins {
   id 'java'
-  id "net.ltgt.apt-idea" version "0.15"
 }
 
 version '1.0-SNAPSHOT'
@@ -13,5 +12,5 @@ repositories {
 
 dependencies {
   implementation 'com.google.dagger:dagger:2.23.2'
-  apt 'com.google.dagger:dagger-compiler:2.23.2'
+  annotationProcessor 'com.google.dagger:dagger-compiler:2.23.2'
 }
