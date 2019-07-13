@@ -10,6 +10,6 @@ import javax.inject.Singleton;
     UserCommandModule.class,
     SystemOutModule.class
 })
-interface CommandRouterFactory {
-  CommandRouter router();
+interface CommandProcessorFactory {
+  CommandProcessor processor();
 }
